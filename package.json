@@ -1,0 +1,25 @@
+{
+  "name": "p_desck",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:iliatapazukk/p_desck.git",
+  "author": "tapazukk <tapazukk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "classnames": "^2.3.1",
+    "css-loader": "5.0.0",
+    "html-webpack-plugin": "4.5.0",
+    "sass": "^1.32.12",
+    "sass-loader": "10.0.4",
+    "style-loader": "2.0.0",
+    "ts-loader": "8.2.0",
+    "typescript": "4.0.3",
+    "webpack": "4.44.2",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
