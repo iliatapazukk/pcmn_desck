@@ -1,0 +1,9 @@
+$color: darkorchid;
+.header{
+    display: inline-block;
+    font-size: 4rem;
+    color: $color;
+    border: 1px solid $color;
+    padding: 1rem;
+    font-family: system-ui;
+}
