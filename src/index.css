@@ -1,8 +1,8 @@
-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: tan;
-    font-size: 2rem;
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: tan;
+  font-size: 2rem;
 }
