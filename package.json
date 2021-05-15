@@ -5,6 +5,11 @@
   "repository": "git@github.com:iliatapazukk/p_desck.git",
   "author": "tapazukk <tapazukk@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
+    "build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
+    "start": "env NODE_ENV=production webpack-dev-server"
+  },
   "dependencies": {
     "classnames": "^2.3.1",
     "react": "^17.0.2",
