@@ -6,8 +6,8 @@ concat('Hello ', 'World')
 
 interface tsObj {
   howIDoIt: string
-  someArray: any
-  withData: object
+  someArray: (string | number)[]
+  withData?: tsObj[]
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const myHomeTask: tsObj = {
@@ -23,11 +23,7 @@ const myHomeTask: tsObj = {
 
 interface MyArray<T> {
   [N: number]: T
-  reduce(fn: (result: T, el: T) => T): T[]
+  reduce<U>(fn: (acc: U, el: T) => U, init: U): U
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const newArray: MyArray<number> = [1, 3, 5]
-
-// TS2322: Type 'number[]' is not assignable to type 'MyArray<any>'.
-// The types returned by 'reduce(...)' are incompatible between these types.
-// Type 'number' is not assignable to type 'any[]'.
