@@ -12,6 +12,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
   },
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/,
+    poll: 1000,
+  },
+
   module: {
     rules: [
       {
@@ -20,11 +26,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.scss$/,
+        test: /\.(s*)css$/,
         use: [
           'style-loader',
           'css-modules-typescript-loader',
@@ -34,12 +36,16 @@ module.exports = {
               modules: {
                 mode: 'local',
                 localIdentName: '[local]__[local]__[hash:base64:5]',
-                auto: /\.modules\.\w+$/i,
+                auto: /\.module\.\w+$/i,
               },
             },
           },
           'sass-loader',
         ],
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack', 'url-loader']
       },
     ],
   },
