@@ -18,10 +18,10 @@ const HomePage = () => {
             <Heading type="h1" inline>
               Find
             </Heading>
-            <Heading type="h2" inline>
+            <Heading type="h3" inline>
               All your favorite
             </Heading>
-            <Heading type="h1" inline>
+            <Heading type="h2" inline>
               Pokemon
             </Heading>
             <Heading type="h3">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>

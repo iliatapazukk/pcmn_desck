@@ -8,7 +8,7 @@ interface props {
 }
 
 const Heading: React.FC<props> = ({ children, type, inline }) => {
-  return React.createElement(`${type}`, { className: cn(s.root, `${type}`, inline ? s.inline : '') }, `${children}`)
+  return React.createElement(`${type}`, { className: cn(s.root, s[type], inline ? s.inline : '') }, `${children}`)
 }
 
 export default Heading
