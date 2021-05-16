@@ -1,6 +1,8 @@
 @import '../../varibales';
 .root {
   box-shadow: 0px 4px 16px rgba(1, 28, 64, 0.2);
+  position: relative;
+  z-index: 10;
 }
 
 .wrap {
@@ -51,7 +53,8 @@
     opacity: 0;
   }
 
-  &:hover {
+  &:hover,
+  &.activeLink {
     &::after {
       width: 100%;
       opacity: 1;

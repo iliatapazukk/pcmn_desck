@@ -17,9 +17,18 @@
   color: $dark;
   border: none;
   outline: 0;
+  cursor: pointer;
 
   &:active {
     box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.18);
     padding-bottom: 6px;
+  }
+
+  &.secondary {
+    background: $third;
+  }
+
+  &.wide {
+    width: 100%;
   }
 }
