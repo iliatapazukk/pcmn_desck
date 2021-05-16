@@ -6,6 +6,7 @@ import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 import Button from '../../components/Button'
 import Parallax from '../../components/Parallax'
+import Heading from '../../components/Heading'
 
 const HomePage = () => {
   return (
@@ -13,6 +14,18 @@ const HomePage = () => {
       <Header />
       <Layout className={s.contentWrap}>
         <div className={s.contentText}>
+          <div>
+            <Heading type="h1" inline>
+              Find
+            </Heading>
+            <Heading type="h2" inline>
+              All your favorite
+            </Heading>
+            <Heading type="h1" inline>
+              Pokemon
+            </Heading>
+            <Heading type="h3">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>
+          </div>
           <Button>Button</Button>
           <Button secondary>Button secondary</Button>
           <Button secondary wide>
