@@ -22,7 +22,7 @@ const HomePage = () => {
           </div>
           <Button>Button</Button>
           <Button secondary>Button secondary</Button>
-          <Button secondary wide>
+          <Button secondary isWide>
             Button wide
           </Button>
         </div>
