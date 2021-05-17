@@ -7,7 +7,6 @@ interface CssExports {
   'h4': string;
   'h5': string;
   'h6': string;
-  'inline': string;
   'p': string;
   'root': string;
 }

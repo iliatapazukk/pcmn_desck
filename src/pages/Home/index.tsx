@@ -15,8 +15,8 @@ const HomePage = () => {
       <Layout className={s.contentWrap}>
         <div className={s.contentText}>
           <div>
-            <Heading type="h1" inline>
-              Find All your favorite Pokemon
+            <Heading type="h1">
+              <b>Find</b> All your favorite <b>Pokemon</b>
             </Heading>
             <Heading type="h3">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>
           </div>

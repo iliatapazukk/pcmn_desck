@@ -10,6 +10,6 @@
   flex-grow: 1;
 }
 .contentText {
-  width: 40%;
+  width: calc(100% - 400px);
   margin: auto 0;
 }
