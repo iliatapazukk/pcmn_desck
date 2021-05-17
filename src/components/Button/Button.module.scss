@@ -1,4 +1,9 @@
+@import '../../mixins';
 @import '../../varibales';
+
+$min_width: 800px;
+$max_width: 1900px;
+
 .root {
   background: #73d677;
   box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
@@ -7,8 +12,9 @@
   align-items: center;
   justify-content: center;
   padding: 0 20px 9px;
+  min-width: 120px;
   height: 66px;
-  font-size: 16px;
+  @include fluidFontSize(18px, 24px, $min_width, $max_width);
 
   font-family: Karla, system-ui;
   font-style: normal;
@@ -30,5 +36,9 @@
 
   &.wide {
     width: 100%;
+  }
+
+  &.centered {
+    margin: auto;
   }
 }

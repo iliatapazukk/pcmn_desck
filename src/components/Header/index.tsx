@@ -1,6 +1,7 @@
-import React from 'react';
-import s from './Header.module.scss';
-import {ReactComponent as PokemonLogoSvg} from './assets/Logo.svg';
+import React from 'react'
+import { A } from 'hookrouter'
+import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg'
+import s from './Header.module.scss'
 
 interface ItemMenu {
   id: number
@@ -11,23 +12,23 @@ const MENU: ItemMenu[] = [
   {
     id: 1,
     value: 'Home',
-    link: '#',
+    link: '/',
   },
   {
     id: 2,
     value: 'Pokédex',
-    link: '#',
+    link: '/pokedex',
   },
   {
     id: 3,
     value: 'Legendaries',
-    link: '#',
+    link: '/legendaries',
   },
   {
     id: 4,
     value: 'Documentation',
-    link: '#',
-  }
+    link: '/documentation',
+  },
 ]
 const Header = () => {
   return (
@@ -37,17 +38,15 @@ const Header = () => {
           <PokemonLogoSvg />
         </div>
         <div className={s.menuWrap}>
-          {
-            MENU.map(
-              ({ value, link, id }) => (
-              <a key={id} href={link} className={s.menuLink}>
-                {value}
-              </a>))
-          }
+          {MENU.map(({ value, link, id }) => (
+            <A key={id} href={link} className={s.menuLink}>
+              {value}
+            </A>
+          ))}
         </div>
       </div>
     </div>
   )
 }
 
-export default Header;
+export default Header
