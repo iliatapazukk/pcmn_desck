@@ -9,9 +9,10 @@ import FourOfourRetina from './assets/404@2x.png'
 
 import Heading from '../../components/Heading'
 import Button from '../../components/Button'
+import { LinkEnum } from '../../routes'
 
 const handleClick = () => {
-  navigate('/')
+  navigate(LinkEnum.HOME)
 }
 
 const NotFoundPage = () => {
@@ -24,7 +25,7 @@ const NotFoundPage = () => {
         <img src={RocketTrio} srcSet={`${RocketTrio}, ${RocketTrioRetina} 2x`} alt="NotFoundPage page" />
         <div>
           <Heading type="h2" isInvert isInline>
-            The rocket team
+            The rocket team&nbsp;
           </Heading>
           <Heading type="h2" isInline>
             has won this time.

@@ -1,6 +1,8 @@
 import React from 'react'
+import { navigate } from 'hookrouter'
 import cn from 'classnames'
 import s from './Home.module.scss'
+import { LinkEnum } from '../../routes'
 
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
@@ -9,6 +11,9 @@ import Parallax from '../../components/Parallax'
 import Heading from '../../components/Heading'
 
 const HomePage = () => {
+  const handleClick = () => {
+    navigate(LinkEnum.POKEDEX)
+  }
   return (
     <div className={cn(s.root)}>
       <Header />
@@ -20,10 +25,8 @@ const HomePage = () => {
             </Heading>
             <Heading type="h3">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>
           </div>
-          <Button>Button</Button>
-          <Button isSecondary>Button secondary</Button>
-          <Button isSecondary isWide>
-            Button wide
+          <Button isCenterd onClick={handleClick}>
+            See all pokemons
           </Button>
         </div>
         <Parallax />
