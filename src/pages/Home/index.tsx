@@ -16,13 +16,7 @@ const HomePage = () => {
         <div className={s.contentText}>
           <div>
             <Heading type="h1" inline>
-              Find
-            </Heading>
-            <Heading type="h3" inline>
-              All your favorite
-            </Heading>
-            <Heading type="h2" inline>
-              Pokemon
+              Find All your favorite Pokemon
             </Heading>
             <Heading type="h3">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>
           </div>
