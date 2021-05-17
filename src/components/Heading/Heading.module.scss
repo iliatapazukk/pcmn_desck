@@ -1,0 +1,34 @@
+@import '../../mixins';
+
+$min_width: 800px;
+$max_width: 1900px;
+.root {
+  font-family: Karla, system-ui;
+  font-style: normal;
+  font-weight: normal;
+
+  &.h1 {
+    @include fluidFontSize(42px, 84px, $min_width, $max_width);
+
+    letter-spacing: 4px;
+  }
+  &.h2 {
+    @include fluidFontSize(32px, 64px, $min_width, $max_width);
+  }
+  &.h3 {
+    @include fluidFontSize(18px, 36px, $min_width, $max_width);
+  }
+  &.h4 {
+    @include fluidFontSize(18px, 24px, $min_width, $max_width);
+  }
+  &.h5 {
+    @include fluidFontSize(16px, 18px, $min_width, $max_width);
+  }
+  &.h6 {
+    @include fluidFontSize(12px, 16px, $min_width, $max_width);
+    line-height: 14px;
+  }
+  &.p {
+    @include fluidFontSize(12px, 16px, $min_width, $max_width);
+  }
+}
