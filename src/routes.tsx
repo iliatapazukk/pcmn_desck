@@ -1,12 +1,8 @@
 import React from 'react'
 import HomePage from './pages/Home'
 import EmptyPage from './pages/Empty'
+import Pokedex from './pages/Pokedex'
 
-interface IGeneralMenu {
-  title: string
-  link: LinkEnum
-  component: () => JSX.Element
-}
 // error  'LinkEnum' is already declared in the upper scope  no-shadow
 // eslint-disable-next-line no-shadow
 export enum LinkEnum {
@@ -14,6 +10,12 @@ export enum LinkEnum {
   POKEDEX = '/pokedex',
   LEGENDARIES = '/legendaries',
   DOCUMENTATION = '/Documentation',
+}
+
+interface IGeneralMenu {
+  title: string
+  link: LinkEnum
+  component: () => JSX.Element
 }
 
 export const GENERAL_MENU: IGeneralMenu[] = [
@@ -25,7 +27,7 @@ export const GENERAL_MENU: IGeneralMenu[] = [
   {
     title: 'Pokédex',
     link: LinkEnum.POKEDEX,
-    component: () => <EmptyPage title="Pokédex" />,
+    component: () => <Pokedex />,
   },
   {
     title: 'Legendaries',
@@ -39,7 +41,7 @@ export const GENERAL_MENU: IGeneralMenu[] = [
   },
 ]
 
-interface IAccItem {
+export interface IAccItem {
   [n: string]: () => JSX.Element
 }
 
