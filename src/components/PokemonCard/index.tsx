@@ -1,60 +1,50 @@
-import React from 'react';
-import Heading from "../Heading";
+import React from 'react'
+import Heading from '../Heading'
 
-import s from './PokemonCard.module.scss';
+import s from './PokemonCard.module.scss'
 
-export interface PokemonCard {
-  img?: string,
-  name?: string,
-  baseExperience?: number,
-  height?: number,
-  id?: number,
-  isDefault?: boolean,
-  order?: number,
-  weight?: number,
-  types?: string[],
+export interface PokemonCardI {
+  img: string
+  name: string
+  attack: number
+  defense: number
+  id: number
+  types?: string[]
+  style: any
 }
-const PokemonCard:React.FC<PokemonCard> = (
-  {
-    img,
-    name,
-    baseExperience,
-    height,
-    id,
-    isDefault,
-    order,
-    weight,
-    types
-  }) => {
+
+const PokemonCard: React.FC<PokemonCardI> = ({ img, name, attack, defense, id, types, style }) => {
   return (
     <div className={s.root}>
       <div className={s.infoWrap}>
-        <Heading type='h6' className={s.titleName}>
+        <Heading type="h4" className={s.titleName}>
           {name}
         </Heading>
         <div className={s.statWrap}>
           <div className={s.statItem}>
-            <div className={s.statValue}>
-              {order}
-            </div>
+            <div className={s.statValue}>{attack}</div>
             Attack
           </div>
           <div className={s.statItem}>
-            <div className={s.statValue}>
-              {baseExperience}
-            </div>
+            <div className={s.statValue}>{defense}</div>
             Defense
           </div>
         </div>
         <div className={s.labelWrap}>
-          <span className={s.label}>fire</span>
+          {types?.map((type) => {
+            return (
+              <span key={type} className={s.label}>
+                {type}
+              </span>
+            )
+          })}
         </div>
       </div>
-      <div className={s.pictureWrap}>
+      <div className={s.pictureWrap} style={style}>
         <img src={img} alt={name} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PokemonCard;
+export default PokemonCard
