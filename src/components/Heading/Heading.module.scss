@@ -1,4 +1,5 @@
 @import '../../mixins';
+@import '../../varibales';
 
 $min_width: 800px;
 $max_width: 1900px;
@@ -6,6 +7,7 @@ $max_width: 1900px;
   font-family: Karla, system-ui;
   font-style: normal;
   font-weight: normal;
+  color: $dark;
 
   &.h1 {
     @include fluidFontSize(42px, 84px, $min_width, $max_width);
@@ -30,5 +32,11 @@ $max_width: 1900px;
   }
   &.p {
     @include fluidFontSize(12px, 16px, $min_width, $max_width);
+  }
+  &.inline {
+    display: inline-block;
+  }
+  &.invert {
+    color: $white;
   }
 }
