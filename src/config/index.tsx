@@ -1,4 +1,20 @@
-export const config = {
+export interface IConfig {
+  client: {
+    server: {
+      protocol: string
+      host: string
+    }
+    endpoint: {
+      [key: string]: {
+        method: string
+        uri: {
+          pathname: string
+        }
+      }
+    }
+  }
+}
+export const config: IConfig = {
   client: {
     server: {
       protocol: 'http',
@@ -8,7 +24,7 @@ export const config = {
       getPokemons: {
         method: 'GET',
         uri: {
-          pathName: '/api/v1/pokemons',
+          pathname: '/api/v1/pokemons',
         },
       },
     },

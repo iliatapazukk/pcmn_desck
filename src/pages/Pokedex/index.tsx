@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Heading from '../../components/Heading'
 import PokemonCard, { PokemonCardI } from '../../components/PokemonCard'
 import s from './Pokedex.module.scss'
-import { config } from '../../config'
 import Spinner from '../../components/Spinner'
 import LoadError from '../../components/LoadError'
+import req from '../../utils/request'
 
 const colours = [
   'linear-gradient(270deg, #5BC7FA 0.15%, #35BAFF 100%)',
@@ -27,16 +27,14 @@ const usePkemons = () => {
   const [data, setData] = useState<PokemonsDataI>()
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
+
   useEffect(() => {
     const getPokemons = async () => {
       setIsLoading(true)
-      const uri = `${config.client.server.protocol}://AAAAA${config.client.server.host}${config.client.endpoint.getPokemons.uri.pathName}`
       try {
-        const response = await fetch(uri)
-        const result = await response.json()
+        const result = await req('getPokemons')
         setData(result)
         // eslint-disable-next-line no-console
-        console.log('!!! data:', result)
       } catch (e) {
         setIsError(true)
       } finally {
