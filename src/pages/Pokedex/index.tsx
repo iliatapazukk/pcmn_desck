@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Heading from '../../components/Heading'
 import PokemonCard, { PokemonCardI } from '../../components/PokemonCard'
 import s from './Pokedex.module.scss'
+import { config } from '../../config'
+import Spinner from '../../components/Spinner'
+import LoadError from '../../components/LoadError'
 
 const colours = [
   'linear-gradient(270deg, #5BC7FA 0.15%, #35BAFF 100%)',
@@ -27,8 +30,9 @@ const usePkemons = () => {
   useEffect(() => {
     const getPokemons = async () => {
       setIsLoading(true)
+      const uri = `${config.client.server.protocol}://AAAAA${config.client.server.host}${config.client.endpoint.getPokemons.uri.pathName}`
       try {
-        const response = await fetch('http://zar.hosthot.ru/api/v1/pokemons')
+        const response = await fetch(uri)
         const result = await response.json()
         setData(result)
         // eslint-disable-next-line no-console
@@ -51,10 +55,10 @@ const usePkemons = () => {
 const Pokedex = () => {
   const { data, isLoading, isError } = usePkemons()
   if (isLoading) {
-    return <div>Loading</div>
+    return <Spinner />
   }
   if (isError) {
-    return <div>Error</div>
+    return <LoadError />
   }
 
   return (
