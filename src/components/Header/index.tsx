@@ -7,6 +7,7 @@ import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg'
 
 const Header = () => {
   const path = usePath()
+  console.log('!!! use Memo1:')
   return (
     <div className={s.root}>
       <div className={s.wrap}>
@@ -15,7 +16,12 @@ const Header = () => {
         </div>
         <div className={s.menuWrap}>
           {GENERAL_MENU.map(({ title, link }) => (
-            <A key={title} href={link} className={cn(s.menuLink, { [s.activeLink]: link === path })}>
+            <A
+              key={title}
+              href={link}
+              className={cn(s.menuLink, {
+                [s.activeLink]: link === path,
+              })}>
               {title}
             </A>
           ))}
@@ -25,4 +31,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default React.memo(Header)

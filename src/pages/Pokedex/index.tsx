@@ -1,6 +1,5 @@
 import React from 'react'
 import Heading from '../../components/Heading'
-import Header from '../../components/Header'
 import PokemonCard from '../../components/PokemonCard'
 import { pokemons } from '../../pokemons'
 import s from './Pokedex.module.scss'
@@ -16,8 +15,7 @@ const getColour = () => colours[Math.floor(Math.random() * colours.length)]
 
 const Pokedex = () => {
   return (
-    <div>
-      <Header />
+    <>
       <div className={s.pokedex}>
         <Heading type="h2">
           {pokemons.length} <b>Pokemons</b> for you to choose favorite
@@ -39,7 +37,7 @@ const Pokedex = () => {
           )}
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
