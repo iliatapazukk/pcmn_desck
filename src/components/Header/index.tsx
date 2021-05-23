@@ -7,7 +7,6 @@ import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg'
 
 const Header = () => {
   const path = usePath()
-  console.log('!!! use Memo1:')
   return (
     <div className={s.root}>
       <div className={s.wrap}>
