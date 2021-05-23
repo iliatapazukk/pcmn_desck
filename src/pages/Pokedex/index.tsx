@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Heading from '../../components/Heading'
-import PokemonCard, {PokemonCardI} from '../../components/PokemonCard'
+import PokemonCard, { PokemonCardI } from '../../components/PokemonCard'
 import s from './Pokedex.module.scss'
 
 const colours = [
@@ -12,63 +12,66 @@ const colours = [
 ]
 const getColour = () => colours[Math.floor(Math.random() * colours.length)]
 
+interface PokemonsDataI {
+  count: number
+  limit: number
+  offset: number
+  total: number
+  pokemons: PokemonCardI[]
+}
+
 const usePkemons = () => {
-  const [data, setData] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [isError, setIsError] = useState(false)
-  useEffect( () => {
-    const getPokemons = async () =>{
-      setIsLoading(true);
+  const [data, setData] = useState<PokemonsDataI>()
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isError, setIsError] = useState<boolean>(false)
+  useEffect(() => {
+    const getPokemons = async () => {
+      setIsLoading(true)
       try {
-        // TODO: определить правильно тип
-        type pkDataAny = any
-        const response = await fetch('http://zar.hosthot.ru/api/v1/pokemons');
-        const result:pkDataAny = await response.json();
-        setData(result);
+        const response = await fetch('http://zar.hosthot.ru/api/v1/pokemons')
+        const result = await response.json()
+        setData(result)
         // eslint-disable-next-line no-console
-        console.log('!!! data:', result.pokemons)
+        console.log('!!! data:', result)
       } catch (e) {
-        setIsError(true);
+        setIsError(true)
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
     }
-    getPokemons();
+    getPokemons()
   }, [])
-    return {
-      data,
-      isLoading,
-      isError,
-    }
+  return {
+    data,
+    isLoading,
+    isError,
+  }
 }
 
 const Pokedex = () => {
   const { data, isLoading, isError } = usePkemons()
   if (isLoading) {
-   return <div>Loading</div>
+    return <div>Loading</div>
   }
   if (isError) {
-   return <div>Error</div>
+    return <div>Error</div>
   }
 
   return (
     <>
       <div className={s.pokedex}>
         <Heading type="h2">
-          {data.total} <b>Pokemons</b> for you to choose favorite
+          {data?.total} <b>Pokemons</b> for you to choose favorite
         </Heading>
         <div className={s.pokedexWrapper}>
-          {data.pokemons.map(
+          {data?.pokemons.map(
             ({ name, img, id, types, stats }): JSX.Element => (
               <PokemonCard
                 style={{ background: getColour() }}
                 key={id}
                 id={id}
-                // TODO: определить типы
-                // attack={stats.attack}
-                // defense={stats.defense}
-                attack={0}
-                defense={0}
+                attack={stats?.attack}
+                defense={stats?.defense}
                 name={name}
                 types={types}
                 img={img}

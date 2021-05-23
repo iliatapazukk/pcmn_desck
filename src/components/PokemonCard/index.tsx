@@ -3,14 +3,33 @@ import Heading from '../Heading'
 
 import s from './PokemonCard.module.scss'
 
-export interface PokemonCardI {
-  img: string
-  name: string
+export interface PokemonStatsI {
+  hp: number
   attack: number
   defense: number
+  specialAttack: number
+  specialDefense: number
+  speed: number
+}
+
+export interface PokemonCardI {
+  nameClean?: string
+  abilities?: string[]
+  types: string[]
+  img: string
+  name: string
+  baseExperience?: number
+  height?: number
   id: number
-  types?: string[]
+  isDefault?: boolean
+  order?: number
+  weight?: number
   style: any
+  // Не разобрался как описать дочерние свойства
+  // Property 'defense' does not exist on type 'PropsWithChildren '
+  stats?: PokemonStatsI
+  attack?: number
+  defense?: number
 }
 
 const PokemonCard: React.FC<PokemonCardI> = ({ img, name, attack, defense, id, types, style }) => {
