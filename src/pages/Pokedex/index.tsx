@@ -34,7 +34,6 @@ const usePkemons = () => {
       try {
         const result = await req('getPokemons')
         setData(result)
-        // eslint-disable-next-line no-console
       } catch (e) {
         setIsError(true)
       } finally {
