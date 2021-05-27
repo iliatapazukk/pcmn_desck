@@ -1,26 +1,25 @@
 import { useEffect, useState } from 'react'
 import req from '../utils/request'
-import { PokemonCardI } from '../components/PokemonCard'
 
-interface PokemonsDataI {
-  count: number
-  limit: number
-  offset: number
-  total: number
-  pokemons: PokemonCardI[]
-}
+// interface PokemonsDataI {
+//   count: number
+//   limit: number
+//   offset: number
+//   total: number
+//   pokemons: PokemonCardI[]
+// }
 
-const useData = (endpoint: string, query: object) => {
+const useData = <T>(endpoint: string, query: object, deps: any[] = []) => {
   // @ts-ignore
-  const [data, setData] = useState<PokemonsDataI>(null)
+  const [data, setData] = useState<T | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
 
   useEffect(() => {
-    const getData = async () => {
+    const getData = async (): Promise<void> => {
       setIsLoading(true)
       try {
-        const result = await req(endpoint, query)
+        const result = await req<T>(endpoint, query)
         setData(result)
       } catch (e) {
         setIsError(true)
@@ -29,7 +28,7 @@ const useData = (endpoint: string, query: object) => {
       }
     }
     getData()
-  }, [query])
+  }, deps)
   return {
     data,
     isLoading,
