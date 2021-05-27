@@ -1,7 +1,9 @@
 import React from 'react'
+import {navigate} from 'hookrouter';
 import Heading from '../Heading'
 
 import s from './PokemonCard.module.scss'
+import {LinkEnum} from '../../routes';
 
 export interface PokemonStatsI {
   hp: number
@@ -25,16 +27,32 @@ export interface PokemonCardI {
   order?: number
   weight?: number
   style: any
-  // Не разобрался как описать дочерние свойства
-  // Property 'defense' does not exist on type 'PropsWithChildren '
+  // onClick: (event: React.MouseEvent) => void
   stats?: PokemonStatsI
   attack?: number
   defense?: number
 }
 
-const PokemonCard: React.FC<PokemonCardI> = ({ img, name, attack, defense, id, types, style }) => {
+const handlePokClick = (id: string) => {
+  // @ts-ignore
+  navigate(LinkEnum.POKEMON({id}) )
+}
+
+const PokemonCard: React.FC<PokemonCardI> = (
+  { img,
+    name,
+    attack,
+    defense,
+    id,
+    types,
+    style
+  }) => {
   return (
-    <div className={s.root}>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+    <div className={s.root}
+         role="button"
+        // @ts-ignore
+         onClick={handlePokClick(`${id}`)}>
       <div className={s.infoWrap}>
         <Heading type="h4" className={s.titleName}>
           {name}

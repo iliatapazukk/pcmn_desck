@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import Heading from '../../components/Heading'
 import PokemonCard from '../../components/PokemonCard'
 import s from './Pokedex.module.scss'
