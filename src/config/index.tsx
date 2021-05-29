@@ -12,8 +12,12 @@ export interface IConfig {
         }
       }
     }
+    query: {
+      name: string
+    }
   }
 }
+
 export const config: IConfig = {
   client: {
     server: {
@@ -27,6 +31,9 @@ export const config: IConfig = {
           pathname: '/api/v1/pokemons',
         },
       },
+    },
+    query: {
+      name: '',
     },
   },
 }

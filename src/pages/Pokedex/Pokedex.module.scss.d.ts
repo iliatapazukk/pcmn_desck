@@ -3,6 +3,7 @@
 interface CssExports {
   'pokedex': string;
   'pokedexWrapper': string;
+  'search': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

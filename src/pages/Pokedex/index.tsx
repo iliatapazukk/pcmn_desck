@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState} from 'react'
 import Heading from '../../components/Heading'
-import PokemonCard, { PokemonCardI } from '../../components/PokemonCard'
+import PokemonCard from '../../components/PokemonCard'
 import s from './Pokedex.module.scss'
 import Spinner from '../../components/Spinner'
 import LoadError from '../../components/LoadError'
-import req from '../../utils/request'
+import useData from '../../hook/getData'
+
+import {IPokemons, PokemonsRequest} from '../../interfface'
+import useDebounse from '../../hook/useDebounse';
 
 const colours = [
   'linear-gradient(270deg, #5BC7FA 0.15%, #35BAFF 100%)',
@@ -15,42 +18,19 @@ const colours = [
 ]
 const getColour = () => colours[Math.floor(Math.random() * colours.length)]
 
-interface PokemonsDataI {
-  count: number
-  limit: number
-  offset: number
-  total: number
-  pokemons: PokemonCardI[]
-}
-
-const usePkemons = () => {
-  const [data, setData] = useState<PokemonsDataI>()
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [isError, setIsError] = useState<boolean>(false)
-
-  useEffect(() => {
-    const getPokemons = async () => {
-      setIsLoading(true)
-      try {
-        const result = await req('getPokemons')
-        setData(result)
-      } catch (e) {
-        setIsError(true)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    getPokemons()
-  }, [])
-  return {
-    data,
-    isLoading,
-    isError,
-  }
+interface IQuery {
+  name?: string
 }
 
 const Pokedex = () => {
-  const { data, isLoading, isError } = usePkemons()
+  const [searchValue, setSearchValue] = useState<string>('')
+
+  const [query, setQuery] = useState({})
+
+  const debounceValue = useDebounse(searchValue, 500)
+
+  const { data, isLoading, isError } = useData<IPokemons>('getPokemons', query, [debounceValue])
+
   if (isLoading) {
     return <Spinner />
   }
@@ -58,27 +38,36 @@ const Pokedex = () => {
     return <LoadError />
   }
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('!!! event:', event.target.value)
+    setSearchValue(event.target.value)
+    setQuery((state: IQuery) => ({...state, name: event.target.value}))
+  }
   return (
     <>
       <div className={s.pokedex}>
         <Heading type="h2">
-          {data?.total} <b>Pokemons</b> for you to choose favorite
+          {!isLoading && data && data?.total} <b>Pokemons</b> for you to choose favorite
         </Heading>
+        <div>
+          <input type="text" className={s.search} value={searchValue} onChange={handleSearchChange} />
+        </div>
         <div className={s.pokedexWrapper}>
-          {data?.pokemons.map(
-            ({ name, img, id, types, stats }): JSX.Element => (
-              <PokemonCard
-                style={{ background: getColour() }}
-                key={id}
-                id={id}
-                attack={stats?.attack}
-                defense={stats?.defense}
-                name={name}
-                types={types}
-                img={img}
-              />
-            ),
-          )}
+          {!isLoading && data &&
+            data?.pokemons.map(
+              (item: PokemonsRequest): JSX.Element => (
+                <PokemonCard
+                  style={{ background: getColour() }}
+                  key={item.id}
+                  id={item.id}
+                  attack={item.stats?.attack}
+                  defense={item.stats?.defense}
+                  name={item.name}
+                  types={item.types}
+                  img={item.img}
+                />
+              ),
+            )}
         </div>
       </div>
     </>
