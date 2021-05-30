@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {A} from 'hookrouter';
 import Heading from '../../components/Heading'
 import PokemonCard from '../../components/PokemonCard'
 import s from './Pokedex.module.scss'
@@ -8,6 +9,7 @@ import useData from '../../hook/getData'
 
 import {IPokemons, PokemonsRequest} from '../../interfface'
 import useDebounse from '../../hook/useDebounse';
+import {LinkEnum} from '../../routes';
 
 const colours = [
   'linear-gradient(270deg, #5BC7FA 0.15%, #35BAFF 100%)',
@@ -43,6 +45,7 @@ const Pokedex = () => {
     setSearchValue(event.target.value)
     setQuery((state: IQuery) => ({...state, name: event.target.value}))
   }
+
   return (
     <>
       <div className={s.pokedex}>
@@ -56,16 +59,18 @@ const Pokedex = () => {
           {!isLoading && data &&
             data?.pokemons.map(
               (item: PokemonsRequest): JSX.Element => (
-                <PokemonCard
-                  style={{ background: getColour() }}
-                  key={item.id}
-                  id={item.id}
-                  attack={item.stats?.attack}
-                  defense={item.stats?.defense}
-                  name={item.name}
-                  types={item.types}
-                  img={item.img}
-                />
+                <A href={`${LinkEnum.POKEDEX}/${item.id}`}>
+                  <PokemonCard
+                    style={{ background: getColour() }}
+                    key={item.id}
+                    id={item.id}
+                    attack={item.stats?.attack}
+                    defense={item.stats?.defense}
+                    name={item.name}
+                    types={item.types}
+                    img={item.img}
+                  />
+                </A>
               ),
             )}
         </div>

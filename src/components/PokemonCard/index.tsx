@@ -27,15 +27,9 @@ export interface PokemonCardI {
   order?: number
   weight?: number
   style: any
-  // onClick: (event: React.MouseEvent) => void
   stats?: PokemonStatsI
   attack?: number
   defense?: number
-}
-
-const handlePokClick = (id: string) => {
-  // @ts-ignore
-  navigate(LinkEnum.POKEMON({id}) )
 }
 
 const PokemonCard: React.FC<PokemonCardI> = (
@@ -49,10 +43,7 @@ const PokemonCard: React.FC<PokemonCardI> = (
   }) => {
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div className={s.root}
-         role="button"
-        // @ts-ignore
-         onClick={handlePokClick(`${id}`)}>
+    <div className={s.root}>
       <div className={s.infoWrap}>
         <Heading type="h4" className={s.titleName}>
           {name}
