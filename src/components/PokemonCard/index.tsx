@@ -1,9 +1,7 @@
 import React from 'react'
-import {navigate} from 'hookrouter';
 import Heading from '../Heading'
 
 import s from './PokemonCard.module.scss'
-import {LinkEnum} from '../../routes';
 
 export interface PokemonStatsI {
   hp: number
