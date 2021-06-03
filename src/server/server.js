@@ -1,3 +1,6 @@
+import fs from 'fs'
+import path from 'path'
+import handlebars from 'handlebars'
 import React from 'react'
 import Hapi from '@hapi/hapi'
 import ReactDom from 'react-dom/server'
@@ -11,13 +14,23 @@ const init = async () => {
     host: 'localhost'
   });
 
+  // eslint-disable-next-line global-require
+  await server.register(require('@hapi/inert'))
+
   server.route({
     method: 'GET',
-    path: '/{any*}',
-    handler: (request, h) => {
-      setPath(request.path)
-      const result = ReactDom.renderToString(<App/>)
-      return result;
+    path: '/main.js',
+    // statusCode":404,"error":"Not Found","message":"Not Found"
+
+    handler: (request, h) => {h.file(path.join(process.cwd(), 'dist', 'main.js'))
+      // setPath(request.path)
+      // const pathInnerHTML = path.join(process.cwd(), 'dist', 'index.html')
+      // const template = handlebars.compile(fs.readFileSync(pathInnerHTML, 'utf8'))
+      // const result = ReactDom.renderToString(<App/>)
+      // const page = template({
+      //   content: result
+      // })
+      // return page;
     }
   });
 
