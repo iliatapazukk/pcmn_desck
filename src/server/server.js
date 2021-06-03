@@ -14,27 +14,33 @@ const init = async () => {
     host: 'localhost'
   });
 
+
   // eslint-disable-next-line global-require
   await server.register(require('@hapi/inert'))
 
   server.route({
     method: 'GET',
     path: '/main.js',
-    // statusCode":404,"error":"Not Found","message":"Not Found"
+    handler: (request, h) => h.file(path.join(process.cwd(), 'dist', 'main.js'))
+  });
 
-    handler: (request, h) => {h.file(path.join(process.cwd(), 'dist', 'main.js'))
-      // setPath(request.path)
-      // const pathInnerHTML = path.join(process.cwd(), 'dist', 'index.html')
-      // const template = handlebars.compile(fs.readFileSync(pathInnerHTML, 'utf8'))
-      // const result = ReactDom.renderToString(<App/>)
-      // const page = template({
-      //   content: result
-      // })
-      // return page;
+  server.route({
+    method: 'GET',
+    path: '/{any*}',
+    handler: (request, h) => {
+      setPath(request.path)
+      const pathIndexHTML = path.join(process.cwd(), 'dist', 'index.html')
+      const template = handlebars.compile(fs.readFileSync(pathIndexHTML, 'utf8'))
+      const result = ReactDom.renderToString(<App/>)
+      const page = template({
+        content: result
+      })
+      return page;
     }
   });
 
   await server.start();
+
   console.log('Server running on %s', server.info.uri);
 };
 
