@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux';
 import {A} from 'hookrouter';
 import Heading from '../../components/Heading'
 import PokemonCard from '../../components/PokemonCard'
@@ -10,6 +11,8 @@ import useData from '../../hook/getData'
 import {IPokemons, PokemonsRequest} from '../../interfface'
 import useDebounse from '../../hook/useDebounse';
 import {LinkEnum} from '../../routes';
+import {getPokemonsTypes, getPokemonsTypesLoading, getTypesAction} from '../../store/pokemons';
+import {IInitialState} from '../../store';
 
 const colours = [
   'linear-gradient(270deg, #5BC7FA 0.15%, #35BAFF 100%)',
@@ -25,6 +28,15 @@ interface IQuery {
 }
 
 const Pokedex = () => {
+
+  const dispatch = useDispatch()
+
+  const types = useSelector(getPokemonsTypes)
+  const typesLoading = useSelector(getPokemonsTypesLoading)
+
+  console.log('!!! types:', types)
+  console.log('!!! typesLoading:', typesLoading)
+
   const [searchValue, setSearchValue] = useState<string>('')
 
   const [query, setQuery] = useState({})
@@ -32,6 +44,10 @@ const Pokedex = () => {
   const debounceValue = useDebounse(searchValue, 500)
 
   const { data, isLoading, isError } = useData<IPokemons>('getPokemons', query, [debounceValue])
+
+  useEffect(() => {
+    dispatch(getTypesAction())
+  }, [])
 
   if (isLoading) {
     return <Spinner />
