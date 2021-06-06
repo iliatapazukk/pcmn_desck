@@ -3,7 +3,7 @@ export interface IPokemons {
   pokemons: PokemonsRequest[]
 }
 
-let PokemonsData = {
+const PokemonsData = {
   "name_clean": "charizard",
   "abilities": [
     "blaze",
@@ -31,4 +31,12 @@ let PokemonsData = {
   "weight": 905
 }
 
+export type ITypesRequest = string[];
+
 export type PokemonsRequest = typeof PokemonsData
+
+export interface IStateRequest<T> {
+  isLoading: boolean,
+  data: null | T[],
+  error: null | object
+}

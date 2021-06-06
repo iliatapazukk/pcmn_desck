@@ -37,7 +37,6 @@ export const config: IConfig = {
           pathname: '/api/v1/pokemon/{id}',
         },
       },
-      // Fake Api
       createPokemon: {
         method: 'POST',
         uri: {
@@ -54,6 +53,12 @@ export const config: IConfig = {
         method: 'DELETE',
         uri: {
           pathname: '/api/v1/pokemon/{id}/delete',
+        },
+      },
+      getPokemonTypes: {
+        method: 'GET',
+        uri: {
+          pathname: '/api/v1/types/',
         },
       },
 
